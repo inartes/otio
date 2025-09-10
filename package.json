@@ -1,0 +1,23 @@
+{
+  "name": "opentimeline",
+  "version": "0.0.1",
+  "description": "opentimeline lite",
+  "keywords": [
+    "opentimeline"
+  ],
+  "homepage": "https://github.com/inartes/otio#readme",
+  "bugs": {
+    "url": "https://github.com/inartes/otio/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inartes/otio.git"
+  },
+  "license": "MIT",
+  "author": "Melvin Carvalho",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
