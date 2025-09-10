@@ -1,0 +1,317 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/inartes/otio/schemas/v0.0.3.json",
+  "title": "OpenTimeline Lite v0.0.3",
+  "description": "Schema for OTIO Lite version 0.0.3 - Adds subtitle track support and extended metadata",
+  "type": "object",
+  "required": ["version", "name", "tracks"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "0.0.3",
+      "description": "Schema version"
+    },
+    "name": {
+      "type": "string",
+      "description": "Timeline name"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 creation timestamp"
+    },
+    "tracks": {
+      "type": "array",
+      "description": "Array of timeline tracks",
+      "items": {
+        "$ref": "#/definitions/track"
+      }
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total timeline duration in seconds"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional timeline metadata",
+      "properties": {
+        "render_settings": {
+          "$ref": "#/definitions/renderSettings"
+        },
+        "project": {
+          "$ref": "#/definitions/projectInfo"
+        },
+        "compiled": {
+          "type": "boolean",
+          "description": "Indicates if timeline has been compiled"
+        },
+        "sources": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Source files used in compilation"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "track": {
+      "type": "object",
+      "required": ["name", "kind", "clips"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Track identifier (e.g., V1, A1, S1)"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["video", "audio", "subtitle"],
+          "description": "Track media type (subtitle added in v0.0.3)"
+        },
+        "clips": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/clip"
+          }
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Track enabled state (added in v0.0.3)"
+        },
+        "metadata": {
+          "type": "object"
+        }
+      }
+    },
+    "clip": {
+      "type": "object",
+      "required": ["name", "source_url", "source_range", "record_range"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Clip identifier"
+        },
+        "source_url": {
+          "type": "string",
+          "description": "Path or URL to source media"
+        },
+        "source_range": {
+          "type": "object",
+          "required": ["start", "duration"],
+          "properties": {
+            "start": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Start time in source (seconds)"
+            },
+            "duration": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Duration to use (seconds)"
+            }
+          }
+        },
+        "record_range": {
+          "type": "object",
+          "required": ["start"],
+          "properties": {
+            "start": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Start time on timeline (seconds)"
+            }
+          }
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Clip enabled state (added in v0.0.3)"
+        },
+        "compiled": {
+          "type": "boolean",
+          "description": "Indicates if clip has been compiled (added in v0.0.3)"
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Clip-specific metadata",
+          "properties": {
+            "width": {"type": "integer"},
+            "height": {"type": "integer"},
+            "frame_rate": {"type": "number"},
+            "pixel_aspect_ratio": {
+              "type": "number",
+              "default": 1.0,
+              "description": "Added in v0.0.3"
+            },
+            "field_order": {
+              "type": "string",
+              "enum": ["progressive", "interlaced_upper", "interlaced_lower"],
+              "description": "Added in v0.0.3"
+            },
+            "sample_rate": {"type": "integer"},
+            "channels": {"type": "integer"},
+            "role": {
+              "type": "string",
+              "enum": ["main", "music", "effect", "dialogue"]
+            },
+            "volume": {"type": "number"},
+            "pan": {
+              "type": "number",
+              "minimum": -1.0,
+              "maximum": 1.0,
+              "description": "Audio panning, added in v0.0.3"
+            },
+            "opacity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Video opacity for overlays, added in v0.0.3"
+            }
+          }
+        }
+      }
+    },
+    "renderSettings": {
+      "type": "object",
+      "properties": {
+        "width": {"type": "integer"},
+        "height": {"type": "integer"},
+        "frame_rate": {"type": "number"},
+        "audio_sample_rate": {"type": "integer"},
+        "format": {
+          "type": "string",
+          "description": "Output format hint (added in v0.0.3)"
+        }
+      }
+    },
+    "projectInfo": {
+      "type": "object",
+      "description": "Project metadata (added in v0.0.3)",
+      "properties": {
+        "studio": {"type": "string"},
+        "editor": {"type": "string"},
+        "notes": {"type": "string"}
+      }
+    }
+  },
+  "examples": [
+    {
+      "version": "0.0.3",
+      "name": "Multi-track Timeline with Subtitles",
+      "created": "2025-01-10T12:00:00Z",
+      "tracks": [
+        {
+          "name": "V1",
+          "kind": "video",
+          "clips": [
+            {
+              "name": "main_video.mp4",
+              "source_url": "main_video.mp4",
+              "source_range": {
+                "start": 0,
+                "duration": 30
+              },
+              "record_range": {
+                "start": 0
+              },
+              "enabled": true,
+              "metadata": {
+                "width": 1920,
+                "height": 1080,
+                "frame_rate": 30,
+                "pixel_aspect_ratio": 1.0,
+                "field_order": "progressive"
+              }
+            }
+          ]
+        },
+        {
+          "name": "V2",
+          "kind": "video",
+          "clips": [
+            {
+              "name": "overlay.mp4",
+              "source_url": "overlay.mp4",
+              "source_range": {
+                "start": 0,
+                "duration": 5
+              },
+              "record_range": {
+                "start": 10
+              },
+              "metadata": {
+                "width": 1920,
+                "height": 1080,
+                "frame_rate": 30,
+                "opacity": 0.7
+              }
+            }
+          ]
+        },
+        {
+          "name": "A1",
+          "kind": "audio",
+          "clips": [
+            {
+              "name": "dialogue.wav",
+              "source_url": "dialogue.wav",
+              "source_range": {
+                "start": 0,
+                "duration": 30
+              },
+              "record_range": {
+                "start": 0
+              },
+              "metadata": {
+                "role": "dialogue",
+                "volume": 1.0,
+                "pan": 0,
+                "sample_rate": 48000,
+                "channels": 2
+              }
+            }
+          ]
+        },
+        {
+          "name": "S1",
+          "kind": "subtitle",
+          "clips": [
+            {
+              "name": "subtitles.srt",
+              "source_url": "subtitles.srt",
+              "source_range": {
+                "start": 0,
+                "duration": 30
+              },
+              "record_range": {
+                "start": 0
+              },
+              "metadata": {
+                "language": "en",
+                "format": "srt"
+              }
+            }
+          ]
+        }
+      ],
+      "duration": 30,
+      "metadata": {
+        "compiled": true,
+        "sources": ["raw_timeline.json"],
+        "render_settings": {
+          "width": 1920,
+          "height": 1080,
+          "frame_rate": 30,
+          "audio_sample_rate": 48000,
+          "format": "mp4"
+        },
+        "project": {
+          "studio": "Example Studios",
+          "editor": "OTIO Lite",
+          "notes": "Example with all v0.0.3 features"
+        }
+      }
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # OpenTimeline Lite (OTIO Lite) Specification
 
-## Version: 1.0.0
+## Version: 0.0.3
 
 ## Overview
 
@@ -26,7 +26,7 @@ All time values are in seconds (floating point).
 
 ```json
 {
-  "version": "string",        // Required: Format version (e.g., "1.0.0")
+  "version": "string",        // Required: Format version (e.g., "0.0.3")
   "name": "string",           // Required: Timeline name
   "created": "ISO 8601",      // Optional: Creation timestamp
   "tracks": [Track],          // Required: Array of tracks
@@ -138,7 +138,7 @@ All time values are in seconds (floating point).
 
 ```json
 {
-  "version": "1.0.0",
+  "version": "0.0.3",
   "name": "Simple Edit",
   "tracks": [
     {
@@ -178,7 +178,7 @@ All time values are in seconds (floating point).
 
 ```json
 {
-  "version": "1.0.0",
+  "version": "0.0.3",
   "name": "Multi-track Timeline",
   "created": "2025-01-01T12:00:00Z",
   "tracks": [
@@ -292,4 +292,6 @@ All time values are in seconds (floating point).
 
 ## Version History
 
-- **1.0.0** - Initial specification based on common editing patterns
+- **0.0.3** - Experimental specification with auto-compilation support
+- **0.0.2** - Added metadata specifications
+- **0.0.1** - Initial specification based on common editing patterns

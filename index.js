@@ -58,7 +58,7 @@ const OTIO_SCHEMA = {
 
 export class Timeline {
   constructor(data = {}) {
-    this.version = data.version || '1.0.0';
+    this.version = data.version || '0.0.3';
     this.name = data.name || 'Untitled Timeline';
     this.created = data.created || new Date().toISOString();
     this.tracks = data.tracks || [];

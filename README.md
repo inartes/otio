@@ -1,7 +1,8 @@
 # OpenTimeline Lite (OTIO Lite)
 
 <p align="center">
-  <strong>A lightweight, developer-friendly timeline format for modern video workflows</strong>
+  <strong>A lightweight, developer-friendly timeline format for modern video workflows</strong><br>
+  <em>Version 0.0.3 - Experimental</em>
 </p>
 
 <p align="center">
@@ -155,7 +156,7 @@ import { Timeline, createClip, createTrack } from 'otio-lite';
 // Create a timeline programmatically
 const timeline = new Timeline({
   name: 'My Project',
-  version: '1.0.0'
+  version: '0.0.3'
 });
 
 // Add a video track with clips
@@ -207,7 +208,7 @@ otio render daily_${DATE}.json --ffmpeg -o review_${DATE}.mp4
 
 ```json
 {
-  "version": "1.0.0",
+  "version": "0.0.3",
   "name": "Corporate Video",
   "tracks": [
     {
@@ -281,7 +282,7 @@ OTIO Lite uses a minimal JSON schema optimized for clarity and ease of use.
 
 ```json
 {
-  "version": "1.0.0",
+  "version": "0.0.3",
   "name": "Timeline Name",
   "created": "2025-01-10T12:00:00Z",
   "tracks": [...],

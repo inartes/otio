@@ -51,7 +51,7 @@ async function probeMedia(filepath) {
 async function createTimelineFromInputs(inputs, options) {
   const timeline = new Timeline({
     name: options.name || 'Compiled Media Timeline',
-    version: '1.0.0',
+    version: '0.0.3',
     created: new Date().toISOString()
   });
   
@@ -413,7 +413,7 @@ async function infoCommand(input) {
 program
   .name('otio')
   .description('OpenTimeline Lite CLI - Simple timeline editing tools')
-  .version('1.0.0');
+  .version('0.0.3');
 
 program
   .command('compile [inputs...]')

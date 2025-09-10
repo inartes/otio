@@ -1,0 +1,216 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/inartes/otio/schemas/v0.0.2.json",
+  "title": "OpenTimeline Lite v0.0.2",
+  "description": "Schema for OTIO Lite version 0.0.2",
+  "type": "object",
+  "required": ["version", "name", "tracks"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "0.0.2",
+      "description": "Schema version"
+    },
+    "name": {
+      "type": "string",
+      "description": "Timeline name"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 creation timestamp"
+    },
+    "tracks": {
+      "type": "array",
+      "description": "Array of timeline tracks",
+      "items": {
+        "$ref": "#/definitions/track"
+      }
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total timeline duration in seconds"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional timeline metadata",
+      "properties": {
+        "render_settings": {
+          "$ref": "#/definitions/renderSettings"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "track": {
+      "type": "object",
+      "required": ["name", "kind", "clips"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Track identifier (e.g., V1, A1)"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["video", "audio"],
+          "description": "Track media type"
+        },
+        "clips": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/clip"
+          }
+        },
+        "metadata": {
+          "type": "object"
+        }
+      }
+    },
+    "clip": {
+      "type": "object",
+      "required": ["name", "source_url", "source_range", "record_range"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Clip identifier"
+        },
+        "source_url": {
+          "type": "string",
+          "description": "Path or URL to source media"
+        },
+        "source_range": {
+          "type": "object",
+          "required": ["start", "duration"],
+          "properties": {
+            "start": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Start time in source (seconds)"
+            },
+            "duration": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Duration to use (seconds)"
+            }
+          }
+        },
+        "record_range": {
+          "type": "object",
+          "required": ["start"],
+          "properties": {
+            "start": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Start time on timeline (seconds)"
+            }
+          }
+        },
+        "metadata": {
+          "type": "object",
+          "description": "Clip-specific metadata",
+          "properties": {
+            "width": {"type": "integer"},
+            "height": {"type": "integer"},
+            "frame_rate": {"type": "number"},
+            "sample_rate": {"type": "integer"},
+            "channels": {"type": "integer"},
+            "role": {
+              "type": "string",
+              "enum": ["main", "music", "effect", "dialogue"]
+            },
+            "volume": {"type": "number"}
+          }
+        }
+      }
+    },
+    "renderSettings": {
+      "type": "object",
+      "properties": {
+        "width": {"type": "integer"},
+        "height": {"type": "integer"},
+        "frame_rate": {"type": "number"},
+        "audio_sample_rate": {"type": "integer"}
+      }
+    }
+  },
+  "examples": [
+    {
+      "version": "0.0.2",
+      "name": "Compiled Media Timeline",
+      "created": "2025-09-09T09:12:30.136Z",
+      "tracks": [
+        {
+          "name": "V1",
+          "kind": "video",
+          "clips": [
+            {
+              "name": "input1.mp4",
+              "source_url": "input1.mp4",
+              "source_range": {
+                "start": 0,
+                "duration": 10.17
+              },
+              "record_range": {
+                "start": 0
+              },
+              "metadata": {
+                "width": 1370,
+                "height": 768,
+                "frame_rate": 24
+              }
+            },
+            {
+              "name": "input2.mp4",
+              "source_url": "input2.mp4",
+              "source_range": {
+                "start": 0,
+                "duration": 10.13
+              },
+              "record_range": {
+                "start": 10.166667
+              },
+              "metadata": {
+                "width": 1370,
+                "height": 768,
+                "frame_rate": 24
+              }
+            }
+          ]
+        },
+        {
+          "name": "A1",
+          "kind": "audio",
+          "clips": [
+            {
+              "name": "audio1.mp3",
+              "source_url": "audio1.mp3",
+              "source_range": {
+                "start": 0,
+                "duration": 21.97
+              },
+              "record_range": {
+                "start": 0
+              },
+              "metadata": {
+                "role": "main",
+                "volume": 1,
+                "sample_rate": 44100,
+                "channels": 2
+              }
+            }
+          ]
+        }
+      ],
+      "duration": 21.97,
+      "metadata": {
+        "render_settings": {
+          "width": 1370,
+          "height": 768,
+          "frame_rate": 24,
+          "audio_sample_rate": 48000
+        }
+      }
+    }
+  ]
+}
