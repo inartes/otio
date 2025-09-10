@@ -1,0 +1,69 @@
+{
+  "version": "1.0.0",
+  "name": "Simple Edit",
+  "created": "2025-01-10T12:00:00Z",
+  "tracks": [
+    {
+      "name": "V1",
+      "kind": "video",
+      "clips": [
+        {
+          "name": "intro",
+          "source_url": "media/intro.mp4",
+          "source_range": {
+            "start": 0,
+            "duration": 5
+          },
+          "record_range": {
+            "start": 0
+          },
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "frame_rate": 30
+          }
+        },
+        {
+          "name": "main_content",
+          "source_url": "media/main.mp4",
+          "source_range": {
+            "start": 10,
+            "duration": 20
+          },
+          "record_range": {
+            "start": 5
+          },
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "frame_rate": 30
+          }
+        },
+        {
+          "name": "outro",
+          "source_url": "media/outro.mp4",
+          "source_range": {
+            "start": 0,
+            "duration": 3
+          },
+          "record_range": {
+            "start": 25
+          },
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "frame_rate": 30
+          }
+        }
+      ]
+    }
+  ],
+  "duration": 28,
+  "metadata": {
+    "render_settings": {
+      "width": 1920,
+      "height": 1080,
+      "frame_rate": 30
+    }
+  }
+}

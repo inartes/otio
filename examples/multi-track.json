@@ -1,0 +1,184 @@
+{
+  "version": "1.0.0",
+  "name": "Multi-track Project",
+  "created": "2025-01-10T14:30:00Z",
+  "tracks": [
+    {
+      "name": "V1",
+      "kind": "video",
+      "clips": [
+        {
+          "name": "scene1",
+          "source_url": "media/scene1.mp4",
+          "source_range": {
+            "start": 0,
+            "duration": 10
+          },
+          "record_range": {
+            "start": 0
+          },
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "frame_rate": 24
+          }
+        },
+        {
+          "name": "scene2",
+          "source_url": "media/scene2.mp4",
+          "source_range": {
+            "start": 5,
+            "duration": 15
+          },
+          "record_range": {
+            "start": 10
+          },
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "frame_rate": 24
+          }
+        }
+      ]
+    },
+    {
+      "name": "V2",
+      "kind": "video",
+      "clips": [
+        {
+          "name": "overlay",
+          "source_url": "media/graphics.mp4",
+          "source_range": {
+            "start": 0,
+            "duration": 5
+          },
+          "record_range": {
+            "start": 12
+          },
+          "metadata": {
+            "width": 1920,
+            "height": 1080,
+            "frame_rate": 24,
+            "opacity": 0.8
+          }
+        }
+      ]
+    },
+    {
+      "name": "A1",
+      "kind": "audio",
+      "clips": [
+        {
+          "name": "dialogue",
+          "source_url": "media/dialogue.wav",
+          "source_range": {
+            "start": 0,
+            "duration": 25
+          },
+          "record_range": {
+            "start": 0
+          },
+          "metadata": {
+            "role": "dialogue",
+            "sample_rate": 48000,
+            "channels": 2
+          }
+        }
+      ]
+    },
+    {
+      "name": "A2",
+      "kind": "audio",
+      "clips": [
+        {
+          "name": "music_intro",
+          "source_url": "media/music.mp3",
+          "source_range": {
+            "start": 0,
+            "duration": 10
+          },
+          "record_range": {
+            "start": 0
+          },
+          "metadata": {
+            "role": "music",
+            "volume": 0.3,
+            "sample_rate": 44100,
+            "channels": 2
+          }
+        },
+        {
+          "name": "music_outro",
+          "source_url": "media/music.mp3",
+          "source_range": {
+            "start": 45,
+            "duration": 8
+          },
+          "record_range": {
+            "start": 17
+          },
+          "metadata": {
+            "role": "music",
+            "volume": 0.4,
+            "sample_rate": 44100,
+            "channels": 2
+          }
+        }
+      ]
+    },
+    {
+      "name": "A3",
+      "kind": "audio",
+      "clips": [
+        {
+          "name": "sfx_whoosh",
+          "source_url": "media/whoosh.wav",
+          "source_range": {
+            "start": 0,
+            "duration": 1
+          },
+          "record_range": {
+            "start": 10
+          },
+          "metadata": {
+            "role": "effect",
+            "volume": 0.6,
+            "sample_rate": 48000,
+            "channels": 1
+          }
+        },
+        {
+          "name": "sfx_impact",
+          "source_url": "media/impact.wav",
+          "source_range": {
+            "start": 0,
+            "duration": 0.5
+          },
+          "record_range": {
+            "start": 15
+          },
+          "metadata": {
+            "role": "effect",
+            "volume": 0.8,
+            "sample_rate": 48000,
+            "channels": 1
+          }
+        }
+      ]
+    }
+  ],
+  "duration": 25,
+  "metadata": {
+    "render_settings": {
+      "width": 1920,
+      "height": 1080,
+      "frame_rate": 24,
+      "audio_sample_rate": 48000
+    },
+    "project": {
+      "studio": "Example Studios",
+      "editor": "OTIO Lite Editor",
+      "notes": "Multi-track example with video overlays and layered audio"
+    }
+  }
+}
